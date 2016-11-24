@@ -80,8 +80,13 @@ alert =[[UIAlertView alloc ] initWithTitle:@"Warning"
 -(void)eventVenueDetails{
     [self.activityIndicator startAnimating];
     
-    NSURL* url = [NSURL URLWithString:@"http://data.in.bookmyshow.com/getData.aspx?cc=&cmd=GETEVENTLIST&dt=&et=MT&f=json&lg=72.842588&lt=19.114186&rc=MUMBAI&sr=&t=a54a7b3aba576256614a"];
-    NSMutableURLRequest* urlRequest = [NSURLRequest requestWithURL:url];
+    NSURL* url = [NSURL URLWithString:@"https://data.in.bookmyshow.com/getData.aspx?cc=&cmd=GETEVENTLIST&dt=&et=MT&f=json&lg=72.842588&lt=19.114186&rc=MUMBAI&sr=&t=a54a7b3aba576256614a"];
+   // NSMutableURLRequest* urlRequest = [NSURLRequest requestWithURL:url];
+  
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+ //   [request setValue:@"application/json" forHTTPHeaderField:@"accept"];
+ //   [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
     NSOperationQueue* queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:urlRequest
                                        queue:queue
@@ -130,7 +135,7 @@ alert =[[UIAlertView alloc ] initWithTitle:@"Warning"
              // request failed - error contains info about the failure
              dispatch_async(dispatch_get_main_queue(), ^{
                  //[self handleError:error]; // execute on main thread!
-                // NSLog(@"ERROR:......... %@", error);
+                 NSLog(@"ERROR:......... %@", error);
                 
                  //  [alert addButtonWithTitle:@"GOO"];
                  [alert show];
